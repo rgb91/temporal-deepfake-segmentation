@@ -1,0 +1,904 @@
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 051_332.
+Length of GT: 695, Length of Predictions: 717
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 058_039.
+Length of GT: 609, Length of Predictions: 669
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 060_088.
+Length of GT: 665, Length of Predictions: 844
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 086_090.
+Length of GT: 687, Length of Predictions: 935
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 101_096.
+Length of GT: 504, Length of Predictions: 1148
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 123_119.
+Length of GT: 502, Length of Predictions: 514
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 128_896.
+Length of GT: 531, Length of Predictions: 735
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 146_256.
+Length of GT: 546, Length of Predictions: 1003
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 173_171.
+Length of GT: 541, Length of Predictions: 721
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 187_234.
+Length of GT: 528, Length of Predictions: 986
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 217_117.
+Length of GT: 548, Length of Predictions: 702
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 221_206.
+Length of GT: 714, Length of Predictions: 718
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 233_995.
+Length of GT: 548, Length of Predictions: 675
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 237_236.
+Length of GT: 651, Length of Predictions: 757
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 238_282.
+Length of GT: 594, Length of Predictions: 622
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 289_228.
+Length of GT: 556, Length of Predictions: 597
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 304_300.
+Length of GT: 598, Length of Predictions: 610
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 321_288.
+Length of GT: 543, Length of Predictions: 567
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 338_336.
+Length of GT: 507, Length of Predictions: 889
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 381_376.
+Length of GT: 515, Length of Predictions: 578
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 391_406.
+Length of GT: 512, Length of Predictions: 547
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 398_457.
+Length of GT: 528, Length of Predictions: 582
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 420_257.
+Length of GT: 763, Length of Predictions: 1126
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 450_533.
+Length of GT: 558, Length of Predictions: 774
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 478_506.
+Length of GT: 668, Length of Predictions: 749
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 503_756.
+Length of GT: 570, Length of Predictions: 674
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 512_495.
+Length of GT: 573, Length of Predictions: 750
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 515_519.
+Length of GT: 751, Length of Predictions: 766
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 526_436.
+Length of GT: 518, Length of Predictions: 838
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 535_587.
+Length of GT: 626, Length of Predictions: 667
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 540_536.
+Length of GT: 603, Length of Predictions: 957
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 605_591.
+Length of GT: 541, Length of Predictions: 664
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 616_614.
+Length of GT: 507, Length of Predictions: 663
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 635_642.
+Length of GT: 573, Length of Predictions: 764
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 639_841.
+Length of GT: 519, Length of Predictions: 662
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 715_721.
+Length of GT: 581, Length of Predictions: 856
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 716_712.
+Length of GT: 550, Length of Predictions: 628
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 720_672.
+Length of GT: 541, Length of Predictions: 564
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 725_724.
+Length of GT: 600, Length of Predictions: 699
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 729_727.
+Length of GT: 554, Length of Predictions: 636
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 734_699.
+Length of GT: 524, Length of Predictions: 1098
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 742_775.
+Length of GT: 559, Length of Predictions: 623
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 782_787.
+Length of GT: 502, Length of Predictions: 556
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 819_786.
+Length of GT: 520, Length of Predictions: 927
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 853_863.
+Length of GT: 513, Length of Predictions: 616
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 856_881.
+Length of GT: 638, Length of Predictions: 1103
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 857_909.
+Length of GT: 637, Length of Predictions: 640
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 877_886.
+Length of GT: 525, Length of Predictions: 570
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 879_963.
+Length of GT: 692, Length of Predictions: 839
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 923_023.
+Length of GT: 553, Length of Predictions: 602
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 927_912.
+Length of GT: 647, Length of Predictions: 697
+INFO:root:GT and Predictions length mismatch. Dataset: fake_DF, Video: 935_733.
+Length of GT: 518, Length of Predictions: 540
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 050_059.
+Length of GT: 530, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 051_332.
+Length of GT: 695, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 058_039.
+Length of GT: 609, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 060_088.
+Length of GT: 665, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 075_977.
+Length of GT: 613, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 086_090.
+Length of GT: 687, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 090_086.
+Length of GT: 687, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 101_096.
+Length of GT: 504, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 119_123.
+Length of GT: 502, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 123_119.
+Length of GT: 502, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 128_896.
+Length of GT: 531, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 146_256.
+Length of GT: 546, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 171_173.
+Length of GT: 541, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 173_171.
+Length of GT: 541, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 178_598.
+Length of GT: 521, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 187_234.
+Length of GT: 528, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 189_200.
+Length of GT: 512, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 206_221.
+Length of GT: 714, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 217_117.
+Length of GT: 548, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 221_206.
+Length of GT: 714, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 233_995.
+Length of GT: 548, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 234_187.
+Length of GT: 528, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 237_236.
+Length of GT: 651, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 238_282.
+Length of GT: 594, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 250_461.
+Length of GT: 564, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 257_420.
+Length of GT: 763, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 280_249.
+Length of GT: 606, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 282_238.
+Length of GT: 594, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 289_228.
+Length of GT: 556, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 298_279.
+Length of GT: 569, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 304_300.
+Length of GT: 598, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 321_288.
+Length of GT: 543, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 332_051.
+Length of GT: 695, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 338_336.
+Length of GT: 507, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 346_351.
+Length of GT: 615, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 356_324.
+Length of GT: 558, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 367_371.
+Length of GT: 649, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 368_378.
+Length of GT: 761, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 376_381.
+Length of GT: 515, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 381_376.
+Length of GT: 515, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 391_406.
+Length of GT: 512, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 398_457.
+Length of GT: 528, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 405_393.
+Length of GT: 531, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 407_374.
+Length of GT: 504, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 420_257.
+Length of GT: 763, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 436_526.
+Length of GT: 518, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 450_533.
+Length of GT: 558, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 468_470.
+Length of GT: 597, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 478_506.
+Length of GT: 668, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 494_445.
+Length of GT: 802, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 495_512.
+Length of GT: 573, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 497_403.
+Length of GT: 621, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 503_756.
+Length of GT: 570, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 506_478.
+Length of GT: 668, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 512_495.
+Length of GT: 573, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 515_519.
+Length of GT: 751, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 519_515.
+Length of GT: 751, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 525_509.
+Length of GT: 517, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 526_436.
+Length of GT: 518, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 533_450.
+Length of GT: 558, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 535_587.
+Length of GT: 626, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 536_540.
+Length of GT: 603, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 540_536.
+Length of GT: 603, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 587_535.
+Length of GT: 626, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 591_605.
+Length of GT: 541, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 605_591.
+Length of GT: 541, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 616_614.
+Length of GT: 507, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 635_642.
+Length of GT: 573, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 639_841.
+Length of GT: 519, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 642_635.
+Length of GT: 573, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 645_688.
+Length of GT: 554, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 672_720.
+Length of GT: 541, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 699_734.
+Length of GT: 524, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 712_716.
+Length of GT: 550, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 715_721.
+Length of GT: 581, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 716_712.
+Length of GT: 550, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 720_672.
+Length of GT: 541, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 721_715.
+Length of GT: 581, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 724_725.
+Length of GT: 600, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 725_724.
+Length of GT: 600, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 727_729.
+Length of GT: 554, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 729_727.
+Length of GT: 554, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 734_699.
+Length of GT: 524, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 742_775.
+Length of GT: 559, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 749_659.
+Length of GT: 693, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 775_742.
+Length of GT: 559, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 782_787.
+Length of GT: 502, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 808_829.
+Length of GT: 637, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 819_786.
+Length of GT: 520, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 841_639.
+Length of GT: 519, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 853_863.
+Length of GT: 513, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 856_881.
+Length of GT: 638, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 857_909.
+Length of GT: 637, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 866_878.
+Length of GT: 509, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 877_886.
+Length of GT: 525, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 879_963.
+Length of GT: 692, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 912_927.
+Length of GT: 647, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 923_023.
+Length of GT: 553, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 927_912.
+Length of GT: 647, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FSh, Video: 935_733.
+Length of GT: 518, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 050_059.
+Length of GT: 530, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 051_332.
+Length of GT: 695, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 058_039.
+Length of GT: 609, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 060_088.
+Length of GT: 665, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 075_977.
+Length of GT: 613, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 086_090.
+Length of GT: 687, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 090_086.
+Length of GT: 687, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 101_096.
+Length of GT: 504, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 119_123.
+Length of GT: 502, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 123_119.
+Length of GT: 502, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 128_896.
+Length of GT: 531, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 146_256.
+Length of GT: 546, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 171_173.
+Length of GT: 541, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 173_171.
+Length of GT: 541, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 178_598.
+Length of GT: 521, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 187_234.
+Length of GT: 528, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 189_200.
+Length of GT: 512, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 206_221.
+Length of GT: 714, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 217_117.
+Length of GT: 548, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 221_206.
+Length of GT: 714, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 233_995.
+Length of GT: 548, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 234_187.
+Length of GT: 528, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 237_236.
+Length of GT: 651, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 238_282.
+Length of GT: 594, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 250_461.
+Length of GT: 564, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 257_420.
+Length of GT: 763, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 280_249.
+Length of GT: 606, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 282_238.
+Length of GT: 594, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 289_228.
+Length of GT: 556, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 298_279.
+Length of GT: 569, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 304_300.
+Length of GT: 598, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 321_288.
+Length of GT: 543, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 332_051.
+Length of GT: 695, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 338_336.
+Length of GT: 507, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 346_351.
+Length of GT: 615, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 356_324.
+Length of GT: 558, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 367_371.
+Length of GT: 649, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 368_378.
+Length of GT: 761, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 376_381.
+Length of GT: 515, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 381_376.
+Length of GT: 515, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 391_406.
+Length of GT: 512, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 398_457.
+Length of GT: 528, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 405_393.
+Length of GT: 531, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 407_374.
+Length of GT: 504, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 420_257.
+Length of GT: 763, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 436_526.
+Length of GT: 518, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 450_533.
+Length of GT: 558, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 468_470.
+Length of GT: 597, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 478_506.
+Length of GT: 668, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 494_445.
+Length of GT: 802, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 495_512.
+Length of GT: 573, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 497_403.
+Length of GT: 621, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 503_756.
+Length of GT: 570, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 506_478.
+Length of GT: 668, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 512_495.
+Length of GT: 573, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 515_519.
+Length of GT: 751, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 519_515.
+Length of GT: 751, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 525_509.
+Length of GT: 517, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 526_436.
+Length of GT: 518, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 533_450.
+Length of GT: 558, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 535_587.
+Length of GT: 626, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 536_540.
+Length of GT: 603, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 540_536.
+Length of GT: 603, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 587_535.
+Length of GT: 626, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 591_605.
+Length of GT: 541, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 605_591.
+Length of GT: 541, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 616_614.
+Length of GT: 507, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 635_642.
+Length of GT: 573, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 639_841.
+Length of GT: 519, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 642_635.
+Length of GT: 573, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 645_688.
+Length of GT: 554, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 672_720.
+Length of GT: 541, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 699_734.
+Length of GT: 524, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 712_716.
+Length of GT: 550, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 715_721.
+Length of GT: 581, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 716_712.
+Length of GT: 550, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 720_672.
+Length of GT: 541, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 721_715.
+Length of GT: 581, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 724_725.
+Length of GT: 600, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 725_724.
+Length of GT: 600, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 727_729.
+Length of GT: 554, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 729_727.
+Length of GT: 554, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 734_699.
+Length of GT: 524, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 742_775.
+Length of GT: 559, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 749_659.
+Length of GT: 693, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 775_742.
+Length of GT: 559, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 782_787.
+Length of GT: 502, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 808_829.
+Length of GT: 637, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 819_786.
+Length of GT: 520, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 841_639.
+Length of GT: 519, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 853_863.
+Length of GT: 513, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 856_881.
+Length of GT: 638, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 857_909.
+Length of GT: 637, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 866_878.
+Length of GT: 509, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 877_886.
+Length of GT: 525, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 879_963.
+Length of GT: 692, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 912_927.
+Length of GT: 647, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 923_023.
+Length of GT: 553, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 927_912.
+Length of GT: 647, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_F2F, Video: 935_733.
+Length of GT: 518, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 050_059.
+Length of GT: 530, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 051_332.
+Length of GT: 695, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 058_039.
+Length of GT: 609, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 060_088.
+Length of GT: 665, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 075_977.
+Length of GT: 613, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 086_090.
+Length of GT: 687, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 090_086.
+Length of GT: 687, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 101_096.
+Length of GT: 504, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 119_123.
+Length of GT: 502, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 123_119.
+Length of GT: 502, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 128_896.
+Length of GT: 531, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 146_256.
+Length of GT: 546, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 171_173.
+Length of GT: 541, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 173_171.
+Length of GT: 541, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 178_598.
+Length of GT: 521, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 187_234.
+Length of GT: 528, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 189_200.
+Length of GT: 512, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 206_221.
+Length of GT: 714, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 217_117.
+Length of GT: 548, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 221_206.
+Length of GT: 714, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 233_995.
+Length of GT: 548, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 234_187.
+Length of GT: 528, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 237_236.
+Length of GT: 651, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 238_282.
+Length of GT: 594, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 250_461.
+Length of GT: 564, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 257_420.
+Length of GT: 763, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 280_249.
+Length of GT: 606, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 282_238.
+Length of GT: 594, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 289_228.
+Length of GT: 556, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 298_279.
+Length of GT: 569, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 304_300.
+Length of GT: 598, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 321_288.
+Length of GT: 543, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 332_051.
+Length of GT: 695, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 338_336.
+Length of GT: 507, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 346_351.
+Length of GT: 615, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 356_324.
+Length of GT: 558, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 367_371.
+Length of GT: 649, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 368_378.
+Length of GT: 761, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 376_381.
+Length of GT: 515, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 381_376.
+Length of GT: 515, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 391_406.
+Length of GT: 512, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 398_457.
+Length of GT: 528, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 405_393.
+Length of GT: 531, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 407_374.
+Length of GT: 504, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 420_257.
+Length of GT: 763, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 436_526.
+Length of GT: 518, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 450_533.
+Length of GT: 558, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 468_470.
+Length of GT: 597, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 478_506.
+Length of GT: 668, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 494_445.
+Length of GT: 802, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 495_512.
+Length of GT: 573, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 497_403.
+Length of GT: 621, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 503_756.
+Length of GT: 570, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 506_478.
+Length of GT: 668, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 512_495.
+Length of GT: 573, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 515_519.
+Length of GT: 751, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 519_515.
+Length of GT: 751, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 525_509.
+Length of GT: 517, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 526_436.
+Length of GT: 518, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 533_450.
+Length of GT: 558, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 535_587.
+Length of GT: 626, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 536_540.
+Length of GT: 603, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 540_536.
+Length of GT: 603, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 587_535.
+Length of GT: 626, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 591_605.
+Length of GT: 541, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 605_591.
+Length of GT: 541, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 616_614.
+Length of GT: 507, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 635_642.
+Length of GT: 573, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 639_841.
+Length of GT: 519, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 642_635.
+Length of GT: 573, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 645_688.
+Length of GT: 554, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 672_720.
+Length of GT: 541, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 699_734.
+Length of GT: 524, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 712_716.
+Length of GT: 550, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 715_721.
+Length of GT: 581, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 716_712.
+Length of GT: 550, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 720_672.
+Length of GT: 541, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 721_715.
+Length of GT: 581, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 724_725.
+Length of GT: 600, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 725_724.
+Length of GT: 600, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 727_729.
+Length of GT: 554, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 729_727.
+Length of GT: 554, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 734_699.
+Length of GT: 524, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 742_775.
+Length of GT: 559, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 749_659.
+Length of GT: 693, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 775_742.
+Length of GT: 559, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 782_787.
+Length of GT: 502, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 808_829.
+Length of GT: 637, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 819_786.
+Length of GT: 520, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 841_639.
+Length of GT: 519, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 853_863.
+Length of GT: 513, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 856_881.
+Length of GT: 638, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 857_909.
+Length of GT: 637, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 866_878.
+Length of GT: 509, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 877_886.
+Length of GT: 525, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 879_963.
+Length of GT: 692, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 912_927.
+Length of GT: 647, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 923_023.
+Length of GT: 553, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 927_912.
+Length of GT: 647, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_NT, Video: 935_733.
+Length of GT: 518, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 050_059.
+Length of GT: 530, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 051_332.
+Length of GT: 695, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 058_039.
+Length of GT: 609, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 060_088.
+Length of GT: 665, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 075_977.
+Length of GT: 613, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 086_090.
+Length of GT: 687, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 090_086.
+Length of GT: 687, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 101_096.
+Length of GT: 504, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 119_123.
+Length of GT: 502, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 123_119.
+Length of GT: 502, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 128_896.
+Length of GT: 531, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 146_256.
+Length of GT: 546, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 171_173.
+Length of GT: 541, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 173_171.
+Length of GT: 541, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 178_598.
+Length of GT: 521, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 187_234.
+Length of GT: 528, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 189_200.
+Length of GT: 512, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 206_221.
+Length of GT: 714, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 217_117.
+Length of GT: 548, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 221_206.
+Length of GT: 714, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 233_995.
+Length of GT: 548, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 234_187.
+Length of GT: 528, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 237_236.
+Length of GT: 651, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 238_282.
+Length of GT: 594, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 250_461.
+Length of GT: 564, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 257_420.
+Length of GT: 763, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 280_249.
+Length of GT: 606, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 282_238.
+Length of GT: 594, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 289_228.
+Length of GT: 556, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 298_279.
+Length of GT: 569, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 304_300.
+Length of GT: 598, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 321_288.
+Length of GT: 543, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 332_051.
+Length of GT: 695, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 338_336.
+Length of GT: 507, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 346_351.
+Length of GT: 615, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 356_324.
+Length of GT: 558, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 367_371.
+Length of GT: 649, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 368_378.
+Length of GT: 761, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 376_381.
+Length of GT: 515, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 381_376.
+Length of GT: 515, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 391_406.
+Length of GT: 512, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 398_457.
+Length of GT: 528, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 405_393.
+Length of GT: 531, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 407_374.
+Length of GT: 504, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 420_257.
+Length of GT: 763, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 436_526.
+Length of GT: 518, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 450_533.
+Length of GT: 558, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 468_470.
+Length of GT: 597, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 478_506.
+Length of GT: 668, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 494_445.
+Length of GT: 802, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 495_512.
+Length of GT: 573, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 497_403.
+Length of GT: 621, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 503_756.
+Length of GT: 570, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 506_478.
+Length of GT: 668, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 512_495.
+Length of GT: 573, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 515_519.
+Length of GT: 751, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 519_515.
+Length of GT: 751, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 525_509.
+Length of GT: 517, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 526_436.
+Length of GT: 518, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 533_450.
+Length of GT: 558, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 535_587.
+Length of GT: 626, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 536_540.
+Length of GT: 603, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 540_536.
+Length of GT: 603, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 587_535.
+Length of GT: 626, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 591_605.
+Length of GT: 541, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 605_591.
+Length of GT: 541, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 616_614.
+Length of GT: 507, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 635_642.
+Length of GT: 573, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 639_841.
+Length of GT: 519, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 642_635.
+Length of GT: 573, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 645_688.
+Length of GT: 554, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 672_720.
+Length of GT: 541, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 699_734.
+Length of GT: 524, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 712_716.
+Length of GT: 550, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 715_721.
+Length of GT: 581, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 716_712.
+Length of GT: 550, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 720_672.
+Length of GT: 541, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 721_715.
+Length of GT: 581, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 724_725.
+Length of GT: 600, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 725_724.
+Length of GT: 600, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 727_729.
+Length of GT: 554, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 729_727.
+Length of GT: 554, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 734_699.
+Length of GT: 524, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 742_775.
+Length of GT: 559, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 749_659.
+Length of GT: 693, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 775_742.
+Length of GT: 559, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 782_787.
+Length of GT: 502, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 808_829.
+Length of GT: 637, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 819_786.
+Length of GT: 520, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 841_639.
+Length of GT: 519, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 853_863.
+Length of GT: 513, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 856_881.
+Length of GT: 638, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 857_909.
+Length of GT: 637, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 866_878.
+Length of GT: 509, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 877_886.
+Length of GT: 525, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 879_963.
+Length of GT: 692, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 912_927.
+Length of GT: 647, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 923_023.
+Length of GT: 553, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 927_912.
+Length of GT: 647, Length of Predictions: 0
+INFO:root:GT and Predictions length mismatch. Dataset: fake_FS, Video: 935_733.
+Length of GT: 518, Length of Predictions: 0

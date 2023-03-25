@@ -13,28 +13,46 @@ simplefilter(action='ignore', category=UserWarning)
 
 
 def group_data_by_video(input_csv_path, output_directory):
-    df = pd.read_csv(input_csv_path, header=None)
-    df = df.drop(columns=[0, 3])
-    grouped_df = df.groupby(2)
+    # df = pd.read_csv(input_csv_path, header=None)
+    df_chunks = pd.read_csv(input_csv_path, index_col=False, chunksize=10000)
+    df = pd.concat(df_chunks)
 
-    for video_name, filtered_df in grouped_df:
-        print(video_name)
-        filtered_df = filtered_df.drop(columns=[2])
-        filtered_df[1] = filtered_df[1].str.replace('.jpg', '')
-        filtered_df[1] = pd.to_numeric(filtered_df[1])
-        # print(filtered_df.head())
+    print('\nDATA READING DONE.\n\n')
+    # df = df.drop(columns=[0, 3])
+    df = df.drop(columns=['image_path', 'run_type', 'target', 'logit_1', 'logit_2'])
+    # grouped_df = df.groupby(2)
+    grouped_df = df.groupby('folder')  # folder == video_name
 
-        filtered_df = filtered_df.sort_values(1)
-        # filtered_df = filtered_df.drop(columns=[1])
-        # print(filtered_df.head())
+    for video_name, filtered_df in tqdm(grouped_df):
+        if os.path.exists(os.path.join(output_directory, video_name+'.csv')):
+            continue
+
+        # print(video_name)
+        # filtered_df_process = filtered_df_process.drop(columns=[2])
+        filtered_df_process = filtered_df.copy()
+        filtered_df_process['filename'] = filtered_df_process['filename'].str.replace('.jpg', '')
+        try:
+            filtered_df_process['filename'] = pd.to_numeric(filtered_df_process['filename'])
+        except ValueError:
+            continue
+        # print(filtered_df_process.head())
+
+        filtered_df_process = filtered_df_process.sort_values('filename')
+        filtered_df_process = filtered_df_process.drop(columns=['folder'])
+
+        filtered_df_process = filtered_df_process.drop_duplicates(subset=['filename'])
+        # print(filtered_df_process.head())
         # exit(1)
 
-        filtered_df.to_csv(output_directory + video_name + '.csv', header=False, index=False)
+        filtered_df_process.to_csv(os.path.join(output_directory, video_name+'.csv'), header=False, index=False)
 
 
 def main():
-    # group_data_by_video(r'data/FFpp_embeddings_Method_A/train_embeddings.csv',
-    #                     r'data/FFpp_embeddings_Method_A_train/')
+    # df_chunks = pd.read_csv(r'./data/FFpp_test_embeddings_cleaned.csv', chunksize=10000, low_memory=False, index_col=False)
+    # df = pd.concat(df_chunks)
+    # df.head(2000).to_csv(r'./data/FFpp_test_embeddings_short.csv', index=False)
+    # group_data_by_video(r'./data/FFpp_test_embeddings_cleaned.csv',
+    #                     r'./data/FFpp_test_embeddings/')
 
     videos_csv_path = r'data/FFpp_embeddings_Method_A_train/'
     class_name_num_map = {'original': 0,
