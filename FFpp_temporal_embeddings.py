@@ -9,7 +9,6 @@ from pathlib import Path
 from collections import Counter
 from warnings import simplefilter
 
-logging.basicConfig(level=logging.INFO, filename='FFpp_temporal_results/FFpp_temporal_evaluation_errors.log')
 
 # ignore all future warnings
 simplefilter(action='ignore', category=FutureWarning)
@@ -36,16 +35,6 @@ def smooth_prediction(preds, n):
     return updated_pred
 
 
-def save_subset_of_csv(infile, outfile, sample_size=2000):
-    chunks = pd.read_csv(infile, chunksize=10000, index_col=None)
-    df = pd.concat(chunks)
-    df.drop(columns=df.columns[0], axis=1, inplace=True)  # temporary
-    if sample_size > 0:
-        df.sample(sample_size).to_csv(outfile, index=False)
-    else:  # save all
-        df.to_csv(outfile, index=False)
-
-
 def remove_duplicate_rows_and_save():
     # Get count duplicate rows
     filepath = r'/data/PROJECT FILES/DFD_Embeddings/FFpp_temporal/FFpp_temporal_one_segment_embeddings_2.csv'
@@ -57,7 +46,7 @@ def remove_duplicate_rows_and_save():
     # print(num_of_duplicate_rows)
 
 
-def clean_raw_csv(infile, outfile):
+def clean_raw_csv_FFpp_temporal(infile, outfile):
     """
         Files: one_segment, two_segments
         Columns: image_path, filename, folder, target, logit_1, logit_2, feature_embedding x 768
@@ -65,7 +54,6 @@ def clean_raw_csv(infile, outfile):
         File: test_embeddings
         Columns: image_path,filename,folder,run_type,target,logit_1,logit_2,e000...e767
     """
-    # save_subset_of_csv()
     columns = ['image_path', 'filename', 'folder', 'run_type', 'target', 'logit_1', 'logit_2']
     for i in range(768):
         columns.append(f'e{i:03d}')
@@ -87,9 +75,9 @@ def clean_raw_csv(infile, outfile):
     print('Done')
 
 
-def group_by_video(input_csv_path, output_directory, n_segments='one_segment'):
+def group_by_video_FFpp_temporal(input_csv_path, output_directory, n_segments='one_segment'):
     datasets = ['fake_DF', 'fake_F2F', 'fake_FS', 'fake_FSh', 'fake_NT']
-    # df_all = pd.read_csv(input_csv_path, index_col=False)
+    # df_all = pd.read_csv(input_csv_file, index_col=False)
     df_all_chunks = pd.read_csv(input_csv_path, index_col=False, chunksize=10000)
     df_all = pd.concat(df_all_chunks)
     print('Data Read Complete.\n')
@@ -244,58 +232,20 @@ def eval_two_segments(results_csv_file='./results_two_segments_vit_wo_smoothing.
     results_log.to_csv(results_csv_file, index=False)
 
 
-def group_test_data_by_dataset(raw_csv_file='./data/FFpp_test_predictions.csv'):
-    df_all_chunks = pd.read_csv(raw_csv_file, index_col=False, chunksize=10000)
-    df = pd.concat(df_all_chunks)
-    print('\n\nREADING DONE.\n\n')
-
-    df.loc[:, 'filename'] = df['filename'].str.replace('.jpg', '')
-    df.loc[:, 'filename'] = pd.to_numeric(df['filename'])
-
-    grouped_df = df.groupby('folder')  # folder == video_name
-    predictions, ground_truths = [], []
-    results_log, wrong_predictions = [], []
-    for video_name, filtered_df in tqdm(grouped_df):
-        filtered_df_sorted = filtered_df.sort_values('filename')
-        logits = filtered_df_sorted[['logit_1', 'logit_2']].to_numpy()
-        preds_list = list(np.argmax(logits, axis=1))
-
-        final_pred = max(preds_list, key=preds_list.count)
-        gt = filtered_df_sorted[filtered_df_sorted['folder'] == video_name].iloc[0]
-
-        if final_pred != gt['target']:
-            wrong_predictions.append(video_name)
-
-        predictions.append(final_pred)
-        ground_truths.append(gt['target'])
-        results_log.append({
-            'video_name': video_name,
-            'prediction': final_pred,
-            'ground_truth': gt
-        })
-    pd.DataFrame(results_log).to_csv('FFpp_test_results/FFpp_test_results_log_IN21K.csv')
-
-    accuracy = sum(1 for _pred, _gt in zip(predictions, ground_truths) if _pred==_gt) / len(predictions)
-    auc = roc_auc_score(ground_truths, predictions, average="macro")
-    print(f'Video level Accuracy: {accuracy}. AUC: {auc}')
-
-    with open(r'FFpp_test_results/FFpp_test_wrong_predictions.txt', 'w') as fp:
-        for item in wrong_predictions:
-            # write each item on a new line
-            fp.write("%s\n" % item)
-        print('Done: Wrong Predictions saved.')
-
-
 if __name__ == '__main__':
+    DATA_ROOT = r'/data/PROJECT FILES/DFD_Embeddings/FFpp_embeddings'
     # DATA_ROOT = r'/mnt/d/PROJECT FILES/DFD_Embeddings/FFpp_temporal'
-    DATA_ROOT = r'D:\PROJECT FILES\DFD_Embeddings\FFpp_temporal'
+    # DATA_ROOT = r'D:\PROJECT FILES\DFD_Embeddings\FFpp_temporal'
+
     # clean_raw_csv(infile=r'/data/PROJECT FILES/DFD_Embeddings/FFpp_temporal/test_embeddings.csv',
     #               outfile=r'/data/PROJECT FILES/DFD_Embeddings/FFpp_temporal/test_embeddings_clean.csv')
+
     # save_subset_of_csv(r'/data/PROJECT FILES/DFD_Embeddings/FFpp_temporal/test_embeddings_clean.csv',
     #                    r'/data/PROJECT FILES/DFD_Embeddings/FFpp_temporal/test_embeddings_part.csv',
     #                    sample_size=2000)
+
     n_segments = 'two_segments'
-    # group_by_video(input_csv_path=join(DATA_ROOT, f'FFpp_temporal_{n_segments}_embeddings_clean.csv'),
+    # group_by_video_FFpp_temporal(input_csv_file=join(DATA_ROOT, f'FFpp_temporal_{n_segments}_embeddings_clean.csv'),
     #                output_directory=join(DATA_ROOT, 'videos_preds', n_segments),
     #                n_segments=n_segments)
 
@@ -304,4 +254,3 @@ if __name__ == '__main__':
     #                  smooth_n_frames=n_frames)
 
     # clean_raw_csv(r'./data/FFpp_test_embeddings.csv', r'./data/FFpp_test_embeddings_cleaned_3.csv')
-    group_test_data_by_dataset(r'./data/FFpp_test_predictions.csv')

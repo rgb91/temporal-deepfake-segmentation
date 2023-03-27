@@ -6,7 +6,7 @@ import tensorflow as tf
 from tensorflow import keras
 from tqdm import tqdm
 
-from utils import data_reader_from_npy
+from utils import load_data_single_npy
 from sklearn.metrics import roc_auc_score, accuracy_score
 from sklearn.preprocessing import LabelBinarizer
 from warnings import simplefilter
@@ -14,7 +14,7 @@ from warnings import simplefilter
 simplefilter(action='ignore', category=FutureWarning)
 simplefilter(action='ignore', category=UserWarning)
 
-MODEL_PATH = r'./saved_models/CelebDF_Method_B_TimeSeries_Run04/'
+MODEL_PATH = r'./saved_models/CelebDF_Method_B_TimeSeries_Run01/'
 DATA_PATH = 'data/CelebDF_embeddings_Method_B_test_npy'
 
 
@@ -32,7 +32,7 @@ def main():
     n_files = len(os.listdir(DATA_PATH))
     for i in tqdm(range(1, n_files + 1)):
         npy_filepath = os.path.join(DATA_PATH, f'CelebDF_embeddings_Method_B_test_{i}.npy')
-        x_temp, y_temp = data_reader_from_npy(npy_filepath)
+        x_temp, y_temp = load_data_single_npy(npy_filepath)
         if x_test is None and y_test is None:
             x_test, y_test = x_temp, y_temp
         else:

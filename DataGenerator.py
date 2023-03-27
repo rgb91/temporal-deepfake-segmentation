@@ -1,15 +1,15 @@
 import os
 import tensorflow as tf
 import numpy as np
-import keras
+# from tensorflow import keras
 
-from utils import data_reader_from_npy
+from utils import load_data_single_npy
 
 
 class DataGenerator(tf.keras.utils.Sequence):
     """Generates data for Keras"""
 
-    def __init__(self, data_path, which_set, npy_prefix='', shuffle=True):
+    def __init__(self, data_path, which_set='', npy_prefix='', shuffle=True):
         """Initialization"""
         self.indexes = None
         self.set = which_set
@@ -34,8 +34,11 @@ class DataGenerator(tf.keras.utils.Sequence):
 
         # Generate data
         # x, y = self.__data_generation(list_ids_temp)
-        npy_filepath = os.path.join(self.data_path, f'{self.npy_prefix}_{self.set}_{index+1}.npy')
-        x, y = data_reader_from_npy(npy_filepath)
+        if len(self.set) < 1:
+            npy_filepath = os.path.join(self.data_path, f'{self.npy_prefix}_{index+1}.npy')
+        else:
+            npy_filepath = os.path.join(self.data_path, f'{self.npy_prefix}_{self.set}_{index + 1}.npy')
+        x, y = load_data_single_npy(npy_filepath)
         y = y[:, 0]
 
         return x, y

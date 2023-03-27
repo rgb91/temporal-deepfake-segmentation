@@ -1,37 +1,10 @@
-from collections import Counter
-from utils import data_reader_from_npy
 import os
 import numpy as np
-from tqdm import tqdm
 from tensorflow import keras
 from tensorflow.keras import layers
-import keras.backend as K
 
-EPOCHS = 200
-BATCH_SIZE = 64
-LEARNING_RATE = 1e-4
-ROOT_PATH = r'data/FFpp_embeddings_Method_A/'
-
-RUN_NUMBER = 3
-MODEL_BEST_CHECKPOINT_PATH = f'./saved_models/FFpp_Method_A_Run{RUN_NUMBER:02d}_best.h5'
-MODEL_SAVE_PATH = f'./saved_models/FFpp_Method_A_TimeSeries_Run{RUN_NUMBER:02d}'
-
-
-def load_data(root_path):
-    x_train, y_train = data_reader_from_npy(os.path.join(root_path, 'FFpp_embeddings_Method_A_train.npy'))
-    y_train = y_train[:, 0]
-
-    x_test, y_test = data_reader_from_npy(os.path.join(root_path, 'FFpp_embeddings_Method_A_val.npy'))
-    y_test = y_test[:, 0]
-
-    print(x_train.shape, y_train.shape)
-    # print(x_val.shape, y_val.shape)
-
-    idx = np.random.permutation(len(x_train))
-    x_train = x_train[idx]
-    y_train = y_train[idx]
-
-    return x_train, x_test, y_train, y_test
+from DataGenerator import DataGenerator
+from utils import load_data_multiple_npy
 
 
 def transformer_encoder(inputs, head_size, num_heads, ff_dim, dropout=0.):
@@ -91,7 +64,7 @@ def build_model(input_shape, head_size, num_heads, ff_dim, num_transformer_block
     return keras.Model(inputs, outputs)
 
 
-def main():
+if __name__ == '__main__':
     """
     Train and evaluate
 
@@ -108,27 +81,30 @@ def main():
     and try the demo on [Hugging Face Spaces](https://huggingface.co/spaces/keras-io/timeseries_transformer_classification).
 
     """
+    EPOCHS = 400
+    N_CLASSES = 6
+    BATCH_SIZE = 64
+    LEARNING_RATE = 1e-4
+
+    DATA_ROOT = r'/data/PROJECT FILES/DFD_Embeddings/FFpp_embeddings'
+    DATA_ROOT_TRAIN = os.path.join(DATA_ROOT, 'FFpp_train_embeddings_npy_batches')
+    DATA_ROOT_TEST = os.path.join(DATA_ROOT, 'FFpp_test_embeddings_npy_batches')
+
+    RUN_NUMBER = 9
+    MODEL_BEST_CHECKPOINT_PATH = f'./saved_models/FFpp_TimeSeries_Run{RUN_NUMBER:02d}_best.h5'
+    MODEL_SAVE_PATH = f'./saved_models/FFpp_TimeSeries_Run{RUN_NUMBER:02d}'
 
     if os.path.exists(MODEL_BEST_CHECKPOINT_PATH):
         print('Model Checkpoint Already Exists. Update the Run number or choose different path.')
-        return
+        exit(0)
 
-    x_train, x_test, y_train, y_test = load_data(root_path=ROOT_PATH)
+    training_generator = DataGenerator(data_path=DATA_ROOT_TRAIN, npy_prefix='FFpp_train_embeddings')
+    x_test, y_test = load_data_multiple_npy(in_dir=DATA_ROOT_TEST, filename_prefix='FFpp_test_embeddings')
 
-    input_shape = x_train.shape[1:]
-    n_classes = len(np.unique(y_train))
+    input_shape = x_test.shape[1:]
 
-    model = build_model(
-        input_shape,
-        head_size=256,
-        num_heads=4,
-        ff_dim=4,
-        num_transformer_blocks=4,
-        mlp_units=[128],
-        n_classes=n_classes,
-        mlp_dropout=0.4,
-        dropout=0.25,
-    )
+    model = build_model(input_shape, head_size=256, num_heads=4, ff_dim=4, num_transformer_blocks=4, mlp_units=[128],
+                        n_classes=N_CLASSES, mlp_dropout=0.4, dropout=0.25)
 
     model.compile(
         loss="sparse_categorical_crossentropy",
@@ -138,23 +114,15 @@ def main():
     model.summary()
 
     callbacks = [
-        keras.callbacks.EarlyStopping(patience=10, restore_best_weights=True),
+        # keras.callbacks.EarlyStopping(patience=10, restore_best_weights=True),
         keras.callbacks.ModelCheckpoint(filepath=MODEL_BEST_CHECKPOINT_PATH, save_best_only=True)
     ]
 
-    model.fit(
-        x_train,
-        y_train,
-        validation_split=0.2,
-        epochs=EPOCHS,
-        batch_size=BATCH_SIZE,
+    model.fit_generator(
+        generator=training_generator, validation_data=(x_test, y_test), epochs=EPOCHS,
         callbacks=callbacks,
     )
 
     model.evaluate(x_test, y_test, verbose=1)
 
     model.save(MODEL_SAVE_PATH)
-
-
-if __name__ == '__main__':
-    main()
