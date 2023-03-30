@@ -34,7 +34,7 @@ def verify_train_embeddings(dir):
     real: 800
     fake_FS: 800
     """
-    # path = os.path.join(DATA_ROOT, 'FFpp_train_embeddings_clean.csv')
+    # path = os.path.join(DATA_ROOT_FFpp, 'FFpp_train_embeddings_clean.csv')
     # df_chunks = pd.read_csv(path, index_col=False, chunksize=10000)
     # df = pd.concat(df_chunks)
     # df_fake_NT = df.loc[df['folder'].str.startswith('fake_NT')]
@@ -74,18 +74,18 @@ def clean_raw_csv_FFpp_main(infile, outfile):
     print('Done')
 
 
-def group_data_by_video_FFpp(input_csv_file, output_directory):
-    df_chunks = pd.read_csv(input_csv_file, index_col=False, chunksize=10000)
+def group_data_by_video_FFpp(infile, out_dir):
+    df_chunks = pd.read_csv(infile, index_col=False, chunksize=10000)
     df = pd.concat(df_chunks)
 
     print('\nDATA READING DONE.\n\n')
     df = df.drop(columns=['image_path', 'run_type', 'target', 'logit_1', 'logit_2'])
     grouped_df = df.groupby('folder')  # folder == video_name
 
-    Path(output_directory).mkdir(parents=True, exist_ok=True)
+    Path(out_dir).mkdir(parents=True, exist_ok=True)
 
     for video_name, filtered_df in tqdm(grouped_df):
-        if os.path.exists(os.path.join(output_directory, video_name + '.csv')):
+        if os.path.exists(os.path.join(out_dir, video_name + '.csv')):
             continue
 
         filtered_df_process = filtered_df.copy()
@@ -102,7 +102,50 @@ def group_data_by_video_FFpp(input_csv_file, output_directory):
         # print(filtered_df_process.head())
         # exit(1)
 
-        filtered_df_process.to_csv(os.path.join(output_directory, video_name + '.csv'), header=False, index=False)
+        filtered_df_process.to_csv(os.path.join(out_dir, video_name + '.csv'), header=False, index=False)
+
+
+def group_data_by_video_FFpp_temporal(infile, out_dir):
+    real, fake = 0, 1
+
+    df_chunks = pd.read_csv(infile, index_col=False, chunksize=10000)
+    df = pd.concat(df_chunks)
+    df = df.drop(columns=['target', 'logit_1', 'logit_2'])
+    print('\nDATA READING DONE.\n\n')
+
+    df['image_path'] = df['image_path'].str.replace(f'/data/gpfs/projects/punim1875/FFpp_temporal_one_segment/', '')
+    df['dataset'] = df['image_path'].str.split('/').str[0]
+    df['video_name'] = df['dataset'] + '_' + df['folder']
+
+    gt_file = r'./FFpp_temporal_eval_data/temporal_one_segment_ground_truth.csv'
+    gt_df = pd.read_csv(gt_file, index_col=False)
+
+    Path(out_dir).mkdir(parents=True, exist_ok=True)
+
+    grouped_df = df.groupby('video_name')  # folder == video_name
+    for video_name, filtered_df in tqdm(grouped_df):
+        if os.path.exists(os.path.join(out_dir, video_name + '.csv')):
+            continue
+        filtered_df_process = filtered_df.copy()
+        filtered_df_process['filename'] = filtered_df_process['filename'].str.replace('.jpg', '')
+        filtered_df_process['filename'] = pd.to_numeric(filtered_df_process['filename'])
+        filtered_df_process = filtered_df_process.sort_values('filename')
+
+        v_name = video_name.split('_')[2] + '_' + video_name.split('_')[3]
+        gt_data = gt_df[gt_df['video_name'] == v_name].iloc[0]
+        total_frames = max(gt_data['total_frames'], len(filtered_df))
+        fake_start = gt_data['fake_start']
+        fake_end = gt_data['fake_end']
+        gt_labels = [real] * (fake_start) + [fake] * (fake_end - fake_start) + [real] * (total_frames - fake_end)
+
+        filtered_df_process = filtered_df_process.drop(columns=['image_path', 'folder', 'video_name', 'dataset'])
+        filtered_df_process.insert(1, 'target', gt_labels)
+
+        # filtered_df_process = filtered_df_process.drop_duplicates(subset=['filename'])
+        # print(filtered_df_process.head())
+        # exit(1)
+
+        filtered_df_process.to_csv(os.path.join(out_dir, video_name + '.csv'), header=False, index=False)
 
 
 def make_npy_batch_FFpp_old():
@@ -149,23 +192,25 @@ def make_npy_batch_FFpp_old():
     print(data_np.shape)
 
 
-def make_npy_by_batch_FFpp(in_dir, out_dir, which_set, batch_sz=64, timesteps=500):
-    class_name_num_map = {'real': 0,
-                          'fake_F2F': 1,
-                          'fake_NT': 2,
-                          'fake_DF': 3,
-                          'fake_FS': 4,
-                          'fake_FSh': 5}
+def make_npy_by_batch_FFpp(in_dir, out_dir, which_set, batch_sz=64, timesteps=500, binary=False, overlap=0):
+    if binary:
+        class_name_num_map = {'real': 0, 'fake_F2F': 1, 'fake_NT': 1, 'fake_DF': 1, 'fake_FS': 1, 'fake_FSh': 1}
+    else:
+        class_name_num_map = {'real': 0, 'fake_F2F': 1, 'fake_NT': 2, 'fake_DF': 3, 'fake_FS': 4, 'fake_FSh': 5}
+
+    Path(out_dir).mkdir(parents=True, exist_ok=True)
 
     data_np, i = None, 0
     for video_name_csv in tqdm(os.listdir(in_dir)):
-        filepath = os.path.join(in_dir, video_name_csv)
-
         class_name = get_class_name_from_video_name(video_name_csv)
         class_num = class_name_num_map[class_name]
 
+        filepath = os.path.join(in_dir, video_name_csv)
         df = pd.read_csv(filepath, header=None)
-        df_splits = split_dataframe(df, chunk_size=timesteps)
+        if overlap > 0:
+            df_splits = [df.loc[i:i+timesteps-1, :] for i in range(0, len(df), timesteps-overlap) if i < len(df)-overlap]
+        else:
+            df_splits = split_dataframe(df, chunk_size=timesteps)
 
         for df_split in df_splits:
             df_split = df_split.drop(columns=[0])  # remove sequence number
@@ -173,8 +218,8 @@ def make_npy_by_batch_FFpp(in_dir, out_dir, which_set, batch_sz=64, timesteps=50
             df_np = df_split.to_numpy()
             df_np = np.expand_dims(df_np, axis=0)  # 1 x n_timesteps x embedding_length
 
-            # padding to match n_timesteps for all videos, set to 500
-            df_np = np.pad(df_np, ((0, 0), (0, timesteps - df_np.shape[1]), (0, 0)), 'constant', constant_values=0)
+            if overlap < (timesteps-1):  # if overlap == timesteps-1 then now need to add padding
+                df_np = np.pad(df_np, ((0, 0), (0, timesteps - df_np.shape[1]), (0, 0)), 'constant', constant_values=0)
 
             if data_np is None:
                 data_np = df_np
@@ -191,13 +236,13 @@ def make_npy_by_batch_FFpp(in_dir, out_dir, which_set, batch_sz=64, timesteps=50
         np.save(f'{out_dir}/FFpp_{which_set}_embeddings_{(i + 1) // batch_sz}.npy', data_np)
 
 
-def make_npy_by_video_FFpp(in_dir, out_dir, timesteps=500):
-    class_name_num_map = {'real': 0,
-                          'fake_F2F': 1,
-                          'fake_NT': 2,
-                          'fake_DF': 3,
-                          'fake_FS': 4,
-                          'fake_FSh': 5}
+def make_npy_by_video_FFpp(in_dir, out_dir, timesteps=500, binary=False, overlap=0):
+    if binary:
+        class_name_num_map = {'real': 0, 'fake_F2F': 1, 'fake_NT': 1, 'fake_DF': 1, 'fake_FS': 1, 'fake_FSh': 1}
+    else:
+        class_name_num_map = {'real': 0, 'fake_F2F': 1, 'fake_NT': 2, 'fake_DF': 3, 'fake_FS': 4, 'fake_FSh': 5}
+
+    Path(out_dir).mkdir(parents=True, exist_ok=True)
 
     for video_name_csv in tqdm(os.listdir(in_dir)):
         filepath = os.path.join(in_dir, video_name_csv)
@@ -206,7 +251,11 @@ def make_npy_by_video_FFpp(in_dir, out_dir, timesteps=500):
         class_num = class_name_num_map[class_name]
 
         df = pd.read_csv(filepath, header=None)
-        df_splits = split_dataframe(df, chunk_size=timesteps)
+        if overlap > 0:
+            df_splits = [df.loc[i:i + timesteps - 1, :] for i in range(0, len(df), timesteps - overlap) if
+                         i < len(df) - overlap]
+        else:
+            df_splits = split_dataframe(df, chunk_size=timesteps)
 
         data_np = None
         for df_split in df_splits:
@@ -215,8 +264,8 @@ def make_npy_by_video_FFpp(in_dir, out_dir, timesteps=500):
             df_np = df_split.to_numpy()
             df_np = np.expand_dims(df_np, axis=0)  # 1 x n_timesteps x embedding_length
 
-            # padding to match n_timesteps for all videos, set to 500
-            df_np = np.pad(df_np, ((0, 0), (0, timesteps - df_np.shape[1]), (0, 0)), 'constant', constant_values=0)
+            if overlap < (timesteps-1):  # if overlap == timesteps-1 then now need to add padding
+                df_np = np.pad(df_np, ((0, 0), (0, timesteps - df_np.shape[1]), (0, 0)), 'constant', constant_values=0)
 
             if data_np is None:
                 data_np = df_np
@@ -227,8 +276,35 @@ def make_npy_by_video_FFpp(in_dir, out_dir, timesteps=500):
         np.save(f'{out_dir}/{video_name}.npy', data_np)
 
 
-def make_npy_for_temporal_data(in_dir, out_dir, timesteps=500):
-    pass
+def make_npy_for_temporal_data(in_dir, out_dir, timesteps=25, overlap=0):
+    Path(out_dir).mkdir(parents=True, exist_ok=True)
+
+    for video_name_csv in tqdm(os.listdir(in_dir)):
+        filepath = os.path.join(in_dir, video_name_csv)
+
+        df = pd.read_csv(filepath, header=None)
+        if overlap > 0:
+            df_splits = [df.loc[i:i + timesteps - 1, :] for i in range(0, len(df), timesteps - overlap) if
+                         i < len(df) - overlap]
+        else:
+            df_splits = split_dataframe(df, chunk_size=timesteps)
+        data_np = None
+        for df_split in df_splits:
+            df_split = df_split.drop(columns=[0])  # remove sequence number
+
+            df_np = df_split.to_numpy()
+            df_np = np.expand_dims(df_np, axis=0)  # 1 x n_timesteps x embedding_length
+
+            if overlap < (timesteps-1):  # if overlap == timesteps-1 then now need to add padding
+                df_np = np.pad(df_np, ((0, 0), (0, timesteps - df_np.shape[1]), (0, 0)), 'constant', constant_values=0)
+
+            if data_np is None:
+                data_np = df_np
+            else:
+                data_np = np.vstack([data_np, df_np])
+
+        video_name = video_name_csv.split('.')[0]
+        np.save(f'{out_dir}/{video_name}.npy', data_np)
 
 
 if __name__ == '__main__':
@@ -242,22 +318,52 @@ if __name__ == '__main__':
     """
     DATA_ROOT = r'/data/PROJECT FILES/DFD_Embeddings/FFpp_embeddings'
 
-    # make_short_file(infile=os.path.join(DATA_ROOT, 'fake_FSh_embeddings.csv'),
-    #                 outfile=os.path.join(DATA_ROOT, 'fake_FSh_embeddings_short.csv'),
+    # make_short_file(infile=os.path.join(DATA_ROOT_FFpp, 'fake_FSh_embeddings.csv'),
+    #                 outfile=os.path.join(DATA_ROOT_FFpp, 'fake_FSh_embeddings_short.csv'),
     #                 use_pandas=False,
     #                 sample_size=1000)
 
-    # clean_raw_csv_FFpp_main(infile=os.path.join(DATA_ROOT, 'fake_FSh_embeddings.csv'),
-    #                         outfile=os.path.join(DATA_ROOT, 'fake_FSh_embeddings_clean.csv'))
+    # clean_raw_csv_FFpp_main(infile=os.path.join(DATA_ROOT_FFpp, 'fake_FSh_embeddings.csv'),
+    #                         outfile=os.path.join(DATA_ROOT_FFpp, 'fake_FSh_embeddings_clean.csv'))
 
-    # group_data_by_video_FFpp(input_csv_file=os.path.join(DATA_ROOT, 'fake_FSh_embeddings_clean.csv'),
-    #                          output_directory=os.path.join(DATA_ROOT, 'fake_FSh_train_embeddings_csv'))
+    # group_data_by_video_FFpp(infile=os.path.join(DATA_ROOT_FFpp, 'fake_FSh_embeddings_clean.csv'),
+    #                          out_dir=os.path.join(DATA_ROOT_FFpp, 'fake_FSh_train_embeddings_csv'))
 
-    # verify_train_embeddings(os.path.join(DATA_ROOT, 'FFpp_train_embeddings_csv'))
+    # verify_train_embeddings(os.path.join(DATA_ROOT_FFpp, 'FFpp_train_embeddings_csv'))
 
-    # make_npy_by_batch_FFpp(in_dir=os.path.join(DATA_ROOT, 'FFpp_test_embeddings_csv'),
-    #                        out_dir=os.path.join(DATA_ROOT, 'FFpp_test_embeddings_npy_batches'),
-    #                        which_set='test')
+    # make_npy_by_batch_FFpp(in_dir=os.path.join(DATA_ROOT, 'FFpp_train_embeddings_csv'),
+    #                        out_dir=os.path.join(DATA_ROOT, 'FFpp_train_embeddings_npy_batches_10steps_binary_overlap'),
+    #                        which_set='train',
+    #                        timesteps=10,
+    #                        binary=True,
+    #                        overlap=9)
+
+    make_npy_by_batch_FFpp(in_dir=os.path.join(DATA_ROOT, 'FFpp_test_embeddings_csv'),
+                           out_dir=os.path.join(DATA_ROOT, 'FFpp_test_embeddings_npy_batches_10steps_binary_overlap'),
+                           which_set='test',
+                           timesteps=10,
+                           binary=True,
+                           overlap=9)
 
     make_npy_by_video_FFpp(in_dir=os.path.join(DATA_ROOT, 'FFpp_test_embeddings_csv'),
-                           out_dir=os.path.join(DATA_ROOT, 'FFpp_test_embeddings_npy_videos'))
+                           out_dir=os.path.join(DATA_ROOT, 'FFpp_test_embeddings_npy_videos_10steps_binary_overlap'),
+                           timesteps=10,
+                           binary=True,
+                           overlap=9)
+
+    # group_data_by_video_FFpp_temporal(infile=os.path.join(DATA_ROOT_FFpp,
+    # 'FFpp_temporal_one_segment_embeddings_clean.csv'), out_dir=os.path.join(DATA_ROOT_FFpp,
+    # 'FFpp_temporal_one_segment_csv'))
+
+    make_npy_for_temporal_data(in_dir=os.path.join(DATA_ROOT, 'FFpp_temporal_one_segment_csv'),
+                               out_dir=os.path.join(DATA_ROOT, 'FFpp_temporal_one_segment_npy_10steps_overlap'),
+                               timesteps=10,
+                               overlap=9)
+
+    # Drafting Binary classification changes for FFpp from utils import load_data_single_npy, load_data_multiple_npy
+    # x, y = load_data_single_npy(r'/data/PROJECT
+    # FILES/DFD_Embeddings/FFpp_embeddings/FFpp_test_embeddings_npy_batches_25steps/FFpp_test_embeddings_1.npy') x,
+    # y = load_data_multiple_npy(r'/data/PROJECT
+    # FILES/DFD_Embeddings/FFpp_embeddings/FFpp_test_embeddings_npy_batches_25steps', 'FFpp_test_embeddings') print(
+    # y[:30]) print(x.shape, y.shape) print(Counter(y)) y = np.array([1 if val >= 1 else 0 for val in list(y)])
+    # print(x.shape, y.shape) print(y[:30])

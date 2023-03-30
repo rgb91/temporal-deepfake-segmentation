@@ -6,7 +6,7 @@ from tensorflow.keras import layers
 from collections import Counter
 
 from DataGenerator import DataGenerator
-from utils import data_reader_from_npy
+from utils import load_data_single_npy, load_data_multiple_npy
 
 DATA_HOME = r'/mnt/sanjay/'
 ROOT_PATH_TRAIN = os.path.join(DATA_HOME, r'CelebDF_embeddings_Method_B_train_npy/')
@@ -28,30 +28,6 @@ DROPOUT = 0.25
 RUN_NUMBER = 4
 MODEL_BEST_CHECKPOINT_PATH = f'./saved_models/CelebDF_Method_B_Run{RUN_NUMBER:02d}_best.h5'
 MODEL_SAVE_PATH = f'./saved_models/CelebDF_Method_B_TimeSeries_Run{RUN_NUMBER:02d}'
-
-
-def load_data(data_root_dir, which_set='train'):
-    x, y = None, None
-    n_files = len(os.listdir(data_root_dir))
-    print(f'\nLoading Data: {which_set}')
-
-    for i in tqdm(range(1, n_files + 1)):
-        npy_filepath = os.path.join(data_root_dir, f'CelebDF_embeddings_Method_B_{which_set}_{i}.npy')
-        x_temp, y_temp = data_reader_from_npy(npy_filepath)
-        if x is None and y is None:
-            x, y = x_temp, y_temp
-        else:
-            x = np.vstack([x, x_temp])
-            y = np.vstack([y, y_temp])
-    y = y[:, 0]
-
-    print(f'Data: {which_set} | shapes (x, y): {x.shape}, {y.shape}\n')
-
-    idx = np.random.permutation(len(x))
-    x = x[idx]
-    y = y[idx]
-
-    return x, y
 
 
 def transformer_encoder(inputs, head_size, num_heads, ff_dim, dropout=0.):
@@ -117,25 +93,17 @@ def main():
     # CelebDF_embeddings_Method_B
     training_generator = DataGenerator(data_path=ROOT_PATH_TRAIN, which_set='train',
                                        npy_prefix='CelebDF_embeddings_Method_B')
-    x_test, y_test = load_data(ROOT_PATH_TEST, which_set='test')
+    x_test, y_test = load_data_multiple_npy(in_dir=ROOT_PATH_TEST, filename_prefix='CelebDF_embeddings_Method_B_test')
 
     if os.path.exists(MODEL_BEST_CHECKPOINT_PATH):
         print('Model Checkpoint Already Exists. Update the Run number or choose different path.')
         return
-
-    # x_train, y_train = load_data(data_root_dir=ROOT_PATH_TRAIN, which_set='train')
-    # x_test, y_test = load_data(data_root_dir=ROOT_PATH_TEST, which_set='test')
-    # x_train = np.load(os.path.join(ROOT_PATH_STACKED, 'x_train.npy'))
-    # y_train = np.load(os.path.join(ROOT_PATH_STACKED, 'y_train.npy'))
-    # x_test = np.load(os.path.join(ROOT_PATH_STACKED, 'x_test.npy'))
-    # y_test = np.load(os.path.join(ROOT_PATH_STACKED, 'y_test.npy'))
 
     input_shape = x_test.shape[1:]
 
     model = build_model(input_shape, head_size=HEAD_SIZE, num_heads=NUM_HEADS, ff_dim=FF_DIM,
                         num_transformer_blocks=NUM_TRANSFORMER_BLOCKS, mlp_units=MLP_UNITS, n_classes=2,
                         mlp_dropout=MLP_DROPOUT, dropout=DROPOUT)
-
     # model.compile(
     #     loss="sparse_categorical_crossentropy",
     #     optimizer=keras.optimizers.Adam(learning_rate=LEARNING_RATE),
@@ -146,18 +114,15 @@ def main():
         optimizer=keras.optimizers.Adam(learning_rate=LEARNING_RATE),
         metrics=["accuracy"],  # keras.metrics.AUC(), F1_score
     )
-    model.summary()
-
+    # model.summary()
     callbacks = [
         keras.callbacks.EarlyStopping(patience=10, restore_best_weights=True),
         keras.callbacks.ModelCheckpoint(filepath=MODEL_BEST_CHECKPOINT_PATH, save_best_only=True)
     ]
-
     model.fit_generator(
         generator=training_generator, validation_data=(x_test, y_test), epochs=EPOCHS,
         callbacks=callbacks,
     )
-
     model.evaluate(x_test, y_test, verbose=1)
 
     model.save(MODEL_SAVE_PATH)

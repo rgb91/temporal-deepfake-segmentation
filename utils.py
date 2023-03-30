@@ -4,7 +4,18 @@ import numpy as np
 import pandas as pd
 from tqdm import tqdm
 # import keras.backend as K
+from sklearn.metrics import roc_auc_score
 from tensorflow.keras import backend as K
+from sklearn.preprocessing import LabelBinarizer
+
+
+def multiclass_roc_auc_score(y_test, y_pred, average="macro"):
+    lb = LabelBinarizer()
+    lb.fit(y_test)
+    y_test = lb.transform(y_test)
+    y_pred = lb.transform(y_pred)
+
+    return roc_auc_score(y_test, y_pred, average=average)
 
 
 def F1_score(y_true, y_pred):
@@ -16,6 +27,16 @@ def F1_score(y_true, y_pred):
     recall = true_positives / (possible_positives + K.epsilon())
     f1_val = 2 * (precision * recall) / (precision + recall + K.epsilon())
     return f1_val
+
+
+def calculate_IOU(gt_labels, preds):
+    intersection = sum(1 for gt, pred in zip(gt_labels, preds) if gt == pred)
+    union = intersection + (len(gt_labels) - intersection) * 2
+    return intersection / union
+
+
+def remove_extension(filename):
+    return filename.split('.')[0]
 
 
 def readucr(filepath):
@@ -72,9 +93,9 @@ def load_data_multiple_npy(in_dir, filename_prefix):
 
     print(f'Data: {filename_prefix} | shapes (x, y): {x.shape}, {y.shape}\n')
 
-    idx = np.random.permutation(len(x))
-    x = x[idx]
-    y = y[idx]
+    # idx = np.random.permutation(len(x))
+    # x = x[idx]
+    # y = y[idx]
 
     return x, y
 

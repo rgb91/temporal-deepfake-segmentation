@@ -9,13 +9,14 @@ from utils import load_data_single_npy
 class DataGenerator(tf.keras.utils.Sequence):
     """Generates data for Keras"""
 
-    def __init__(self, data_path, which_set='', npy_prefix='', shuffle=True):
+    def __init__(self, data_path, n_classes, which_set='', npy_prefix='', shuffle=True):
         """Initialization"""
         self.indexes = None
-        self.set = which_set
         self.data_path = data_path
-        self.shuffle = shuffle
+        self.set = which_set
         self.npy_prefix = npy_prefix
+        self.shuffle = shuffle
+        self.n_classes = n_classes
         self.list_ids = os.listdir(data_path)
 
     def __len__(self):
@@ -26,21 +27,12 @@ class DataGenerator(tf.keras.utils.Sequence):
         """
         'Generate one batch of data'
         """
-        # Generate indexes of the batch
-        # indexes = self.indexes[index * self.batch_size:(index + 1) * self.batch_size]
-
-        # Find list of IDs
-        # list_ids_temp = [self.list_ids[k] for k in indexes]
-
-        # Generate data
-        # x, y = self.__data_generation(list_ids_temp)
         if len(self.set) < 1:
             npy_filepath = os.path.join(self.data_path, f'{self.npy_prefix}_{index+1}.npy')
         else:
             npy_filepath = os.path.join(self.data_path, f'{self.npy_prefix}_{self.set}_{index + 1}.npy')
         x, y = load_data_single_npy(npy_filepath)
         y = y[:, 0]
-
         return x, y
 
     def on_epoch_end(self):
