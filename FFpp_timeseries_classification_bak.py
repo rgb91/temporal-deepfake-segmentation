@@ -1,61 +1,33 @@
+from collections import Counter
+from utils import load_data_single_npy
 import os
 import numpy as np
 from tqdm import tqdm
 from tensorflow import keras
 from tensorflow.keras import layers
-from collections import Counter
-
-from DataGenerator import DataGenerator
-from utils import load_data_single_npy
-
-ROOT_PATH_TRAIN = r'data/WDF_embeddings_train_npy/'
-ROOT_PATH_TEST = r'data/WDF_embeddings_test_npy/'
-
-EPOCHS = 50
-BATCH_SIZE = 64
-LEARNING_RATE = 1e-4
-VALIDATION_SPLIT = 0.2
-
-HEAD_SIZE = 256
-NUM_HEADS = 4
-FF_DIM = 4
-NUM_TRANSFORMER_BLOCKS = 4
-MLP_UNITS = [128]
-MLP_DROPOUT = 0.4
-DROPOUT = 0.25
-
-RUN_NUMBER = 4
-MODEL_BEST_CHECKPOINT_PATH = f'./saved_models/WDF_Run{RUN_NUMBER:02d}_best.h5'
-MODEL_SAVE_PATH = f'./saved_models/WDF_TimeSeries_Run{RUN_NUMBER:02d}'
+import keras.backend as K
 
 
-def load_data(data_root_dir, which_set='train'):
-    x, y = None, None
-    n_files = len(os.listdir(data_root_dir))
-    print(f'\nLoading Data: {which_set}')
+def load_data(root_path):
+    x_train, y_train = load_data_single_npy(os.path.join(root_path, 'FFpp_embeddings_Method_A_train.npy'))
+    y_train = y_train[:, 0]
 
-    for i in tqdm(range(1, n_files + 1)):
-        npy_filepath = os.path.join(data_root_dir, f'WDF_embeddings_{which_set}_{i}.npy')
-        x_temp, y_temp = load_data_single_npy(npy_filepath)
-        if x is None and y is None:
-            x, y = x_temp, y_temp
-        else:
-            x = np.vstack([x, x_temp])
-            y = np.vstack([y, y_temp])
-    y = y[:, 0]
+    x_test, y_test = load_data_single_npy(os.path.join(root_path, 'FFpp_embeddings_Method_A_val.npy'))
+    y_test = y_test[:, 0]
 
-    print(f'Data: {which_set} | shapes (x, y): {x.shape}, {y.shape}\n')
+    print(x_train.shape, y_train.shape)
+    # print(x_val.shape, y_val.shape)
 
-    idx = np.random.permutation(len(x))
-    x = x[idx]
-    y = y[idx]
+    idx = np.random.permutation(len(x_train))
+    x_train = x_train[idx]
+    y_train = y_train[idx]
 
-    return x, y
+    return x_train, x_test, y_train, y_test
 
 
 def transformer_encoder(inputs, head_size, num_heads, ff_dim, dropout=0.):
     """
-    Build the model
+    ## Build the model
 
     Our model processes a tensor of shape `(batch size, sequence length, features)`,
     where `sequence length` is the number of time steps and `features` is each input
@@ -106,48 +78,61 @@ def build_model(input_shape, head_size, num_heads, ff_dim, num_transformer_block
     for dim in mlp_units:
         x = layers.Dense(dim, activation="relu")(x)
         x = layers.Dropout(mlp_dropout)(x)
-    # outputs = layers.Dense(n_classes, activation="softmax")(x)
-    outputs = layers.Dense(1, activation="sigmoid")(x)
+    outputs = layers.Dense(n_classes, activation="softmax")(x)
     return keras.Model(inputs, outputs)
 
 
-def main():
+if __name__ == '__main__':
+    """
+    Train and evaluate
+
+    Conclusions
+
+    In about 110-120 epochs (25s each on Colab), the model reaches a training
+    accuracy of ~0.95, validation accuracy of ~84 and a testing
+    accuracy of ~85, without hyperparameter tuning. And that is for a model
+    with less than 100k parameters. Of course, parameter count and accuracy could be
+    improved by a hyperparameter search and a more sophisticated learning rate
+    schedule, or a different optimizer.
+
+    You can use the trained model hosted on [Hugging Face Hub](https://huggingface.co/keras-io/timeseries_transformer_classification)
+    and try the demo on [Hugging Face Spaces](https://huggingface.co/spaces/keras-io/timeseries_transformer_classification).
+
+    """
+    EPOCHS = 200
+    BATCH_SIZE = 64
+    LEARNING_RATE = 1e-4
+    ROOT_PATH = r'/data/PROJECT FILES/DFD_Embeddings/FFpp_embeddings'
+
+    RUN_NUMBER = 6
+    MODEL_BEST_CHECKPOINT_PATH = f'./saved_models/FFpp_Timeseries_Run{RUN_NUMBER:02d}_best.h5'
+    MODEL_SAVE_PATH = f'./saved_models/FFpp_TimeSeries_Run{RUN_NUMBER:02d}'
+
     if os.path.exists(MODEL_BEST_CHECKPOINT_PATH):
         print('Model Checkpoint Already Exists. Update the Run number or choose different path.')
-        return
+        exit(0)
 
-    # Generators
-    training_generator = DataGenerator(data_path=ROOT_PATH_TRAIN, which_set='train')
-    x_test, y_test = load_data(ROOT_PATH_TEST, which_set='test')
-    # print('Test data shape: ', x_test.shape, y_test.shape)
+    x_train, x_test, y_train, y_test = load_data(root_path=ROOT_PATH)
 
-    # for i, (x, y) in enumerate(training_generator):
-    #     print(i, x.shape, y.shape)
-
-    input_shape = x_test.shape[1:]
-    # n_classes = len(np.unique(y_train))
+    input_shape = x_train.shape[1:]
+    n_classes = len(np.unique(y_train))
 
     model = build_model(
         input_shape,
-        head_size=HEAD_SIZE,
-        num_heads=NUM_HEADS,
-        ff_dim=FF_DIM,
-        num_transformer_blocks=NUM_TRANSFORMER_BLOCKS,
-        mlp_units=MLP_UNITS,
-        n_classes=2,
-        mlp_dropout=MLP_DROPOUT,
-        dropout=DROPOUT,
+        head_size=256,
+        num_heads=4,
+        ff_dim=4,
+        num_transformer_blocks=4,
+        mlp_units=[128],
+        n_classes=n_classes,
+        mlp_dropout=0.4,
+        dropout=0.25,
     )
 
-    # model.compile(
-    #     loss="sparse_categorical_crossentropy",
-    #     optimizer=keras.optimizers.Adam(learning_rate=LEARNING_RATE),
-    #     metrics=["sparse_categorical_accuracy"],  # keras.metrics.AUC(), F1_score
-    # )
     model.compile(
-        loss="binary_crossentropy",
+        loss="sparse_categorical_crossentropy",
         optimizer=keras.optimizers.Adam(learning_rate=LEARNING_RATE),
-        metrics=["accuracy"],  # keras.metrics.AUC(), F1_score
+        metrics=["sparse_categorical_accuracy"],
     )
     model.summary()
 
@@ -156,16 +141,15 @@ def main():
         keras.callbacks.ModelCheckpoint(filepath=MODEL_BEST_CHECKPOINT_PATH, save_best_only=True)
     ]
 
-    # model.fit(x_train, y_train, validation_split=VALIDATION_SPLIT, epochs=EPOCHS, batch_size=BATCH_SIZE,
-    #           callbacks=callbacks)
-
-    model.fit_generator(generator=training_generator, validation_data=(x_test, y_test), epochs=EPOCHS,
-                        callbacks=callbacks)
+    model.fit(
+        x_train,
+        y_train,
+        validation_split=0.2,
+        epochs=EPOCHS,
+        batch_size=BATCH_SIZE,
+        callbacks=callbacks,
+    )
 
     model.evaluate(x_test, y_test, verbose=1)
 
     model.save(MODEL_SAVE_PATH)
-
-
-if __name__ == '__main__':
-    main()

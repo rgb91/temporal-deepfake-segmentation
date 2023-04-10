@@ -78,9 +78,9 @@ def evaluate_old():
     auc_macro = multiclass_roc_auc_score(y_test, y_pred)
     acc = accuracy_score(y_test, y_pred)
 
-    # print(f'AUC: {auc:0.4f}')
-    print(f'AUC (macro): {auc_macro:0.4f}')
-    print(f'Accuracy: {acc:0.4f}')
+    # print(f'AUC: {auc:0.3f}')
+    print(f'AUC (macro): {auc_macro:0.3f}')
+    print(f'Accuracy: {acc:0.3f}')
 
 
 def evaluate_test_data_ViT(raw_csv_file='./data/FFpp_test_predictions.csv'):
@@ -125,7 +125,7 @@ def evaluate_test_data_ViT(raw_csv_file='./data/FFpp_test_predictions.csv'):
         print('Done: Wrong Predictions saved.')
 
 
-def evaluate_temporal_one_segment_ViT(results_csv_file='./results_one_segment_vit_wo_smoothing.csv', smooth_n_frames=0):
+def evaluate_temporal_one_segment_ViT(data_path, gt_file, smooth_n_frames=0):
     """
 
     Variation 1: Only frame level accuracy, ViT model, Acc, IOU, No smoothing
@@ -135,9 +135,7 @@ def evaluate_temporal_one_segment_ViT(results_csv_file='./results_one_segment_vi
     :return:
     """
     real, fake = 1, 0
-    data_path = r'/data/PROJECT FILES/DFD_Embeddings/FFpp_embeddings/FFpp_temporal_eval_data/one_segment'
-    gt_file = r'/data/PROJECT FILES/DFD_Embeddings/FFpp_embeddings/FFpp_temporal_eval_data' \
-              r'/temporal_one_segment_ground_truth.csv'
+    
     gt_df = pd.read_csv(gt_file, index_col=False)
 
     datasets = ['fake_DF', 'fake_FSh', 'fake_F2F', 'fake_NT', 'fake_FS']
@@ -146,6 +144,7 @@ def evaluate_temporal_one_segment_ViT(results_csv_file='./results_one_segment_vi
     for d in datasets:
         d_path = os.path.join(data_path, d)
         acc_one_dataset_total, IoU_one_dataset_total = 0, 0
+        d_predictions, d_ground_truths = [], []
         for v_name in os.listdir(d_path):
             v_preds_df = pd.read_csv(os.path.join(d_path, v_name), index_col=False)
             v_preds = v_preds_df['prediction'].tolist()
@@ -153,12 +152,17 @@ def evaluate_temporal_one_segment_ViT(results_csv_file='./results_one_segment_vi
                 v_preds = smooth_prediction_v2(v_preds, smooth_n_frames)
 
             gt_data = gt_df[gt_df['video_name'] == remove_extension(v_name)].iloc[0]
-            total_frames, fake_start, fake_end = max(gt_data['total_frames'], len(v_preds)), gt_data['fake_start'], \
-                gt_data['fake_end']
-            gt_labels = [real] * (fake_start) + [fake] * (fake_end - fake_start) + [real] * (total_frames - fake_end)
+            total_frames = max(gt_data['total_frames'], len(v_preds))
+            fake_start, fake_end = gt_data['fake_start'], gt_data['fake_end']
+            gt_labels = [real] * fake_start + \
+                        [fake] * (fake_end - fake_start) + \
+                        [real] * (total_frames - fake_end)
 
             predictions.extend(v_preds)
             ground_truths.extend(gt_labels)
+
+            d_predictions.extend(v_preds)
+            d_ground_truths.extend(gt_labels)
 
             if len(gt_labels) != len(v_preds):
                 # logging.info(f'GT and Predictions length mismatch. Dataset: {d}, Video: {remove_extension(v_name)}.\n'
@@ -178,7 +182,8 @@ def evaluate_temporal_one_segment_ViT(results_csv_file='./results_one_segment_vi
 
         acc_one_dataset_avg = acc_one_dataset_total / len(os.listdir(d_path))
         IoU_one_dataset_avg = IoU_one_dataset_total / len(os.listdir(d_path))
-        print(f'Dataset {d}: \n\tAccuracy: {acc_one_dataset_avg:0.4f}\n\tIOU: {IoU_one_dataset_avg:0.4f}')
+        auc_dataset_avg = roc_auc_score(d_ground_truths, d_predictions, average="macro")
+        print(f'Dataset {d}: \n\tAccuracy: {acc_one_dataset_avg:0.3f}\n\tIoU: {IoU_one_dataset_avg:0.3f}\n\tAUC: {auc_dataset_avg:0.3f}')
 
         acc_total += acc_one_dataset_avg
         IoU_total += IoU_one_dataset_avg
@@ -186,12 +191,12 @@ def evaluate_temporal_one_segment_ViT(results_csv_file='./results_one_segment_vi
     acc_total_avg = acc_total / len(datasets)
     IoU_total_avg = IoU_total / len(datasets)
     auc_total_avg = roc_auc_score(ground_truths, predictions, average="macro")
-    print(f'\nTotal: \n\tAccuracy: {acc_total_avg:0.4f}\n\tIoU: {IoU_total_avg:0.4f}')
-    print(f'\tAUC: {auc_total_avg:0.4f}')
+    print(f'\nTotal: \n\tAccuracy: {acc_total_avg:0.3f}\n\tIoU: {IoU_total_avg:0.3f}')
+    print(f'\tAUC: {auc_total_avg:0.3f}')
     # results_log.to_csv(results_csv_file, index=False)
 
 
-def evaluate_temporal_two_segments_ViT(results_csv_file='./results_two_segments_vit_wo_smoothing.csv', smooth_n_frames=0):
+def evaluate_temporal_two_segments_ViT(data_path, gt_file, smooth_n_frames=0):
     """
     Variation 1: Only frame level accuracy, ViT model, Acc, IOU, No smoothing
 
@@ -200,17 +205,14 @@ def evaluate_temporal_two_segments_ViT(results_csv_file='./results_two_segments_
     :return:
     """
     results_log = pd.DataFrame(columns=['dataset', 'video_name', 'acc', 'IOU'])
-    data_path = r'/data/PROJECT FILES/DFD_Embeddings/FFpp_embeddings/FFpp_temporal_eval_data/two_segments'
-
     real, fake = 1, 0
-    gt_file = r'/data/PROJECT FILES/DFD_Embeddings/FFpp_embeddings/FFpp_temporal_eval_data' \
-              r'/temporal_two_segments_ground_truth.csv'
     gt_df = pd.read_csv(gt_file, index_col=False)
 
     datasets = ['fake_DF', 'fake_FSh', 'fake_F2F', 'fake_NT', 'fake_FS']
     acc_total, IOU_total = 0, 0
     predictions, ground_truths = [], []
     for d in datasets:
+        d_predictions, d_ground_truths = [], []
         d_path = os.path.join(data_path, d)
         acc_one_dataset_total, IOU_one_dataset_total = 0, 0
         for v_name in os.listdir(d_path):
@@ -231,7 +233,10 @@ def evaluate_temporal_two_segments_ViT(results_csv_file='./results_two_segments_
 
             predictions.extend(v_preds)
             ground_truths.extend(gt_labels)
-
+            
+            d_predictions.extend(v_preds)
+            d_ground_truths.extend(gt_labels)
+            
             if len(gt_labels) != len(v_preds):
                 # logging.info(f'GT and Predictions length mismatch. Dataset: {d}, Video: {remove_extension(v_name)}.\n'
                 #              f'Length of GT: {len(gt_labels)}, Length of Predictions: {len(v_preds)}')
@@ -249,7 +254,8 @@ def evaluate_temporal_two_segments_ViT(results_csv_file='./results_two_segments_
             IOU_one_dataset_total += IOU_one_vid
         acc_one_dataset_avg = acc_one_dataset_total / len(os.listdir(d_path))
         IOU_one_dataset_avg = IOU_one_dataset_total / len(os.listdir(d_path))
-        print(f'Dataset {d}: \n\tAccuracy: {acc_one_dataset_avg:0.4f}\n\tIOU: {IOU_one_dataset_avg:0.4f}')
+        auc_dataset_avg = roc_auc_score(d_ground_truths, d_predictions, average="macro")
+        print(f'Dataset {d}: \n\tAccuracy: {acc_one_dataset_avg:0.3f}\n\tIoU: {IOU_one_dataset_avg:0.3f}\n\tAUC: {auc_dataset_avg:0.3f}')
 
         acc_total += acc_one_dataset_avg
         IOU_total += IOU_one_dataset_avg
@@ -257,13 +263,23 @@ def evaluate_temporal_two_segments_ViT(results_csv_file='./results_two_segments_
     acc_total_avg = acc_total / len(datasets)
     IoU_total_avg = IOU_total / len(datasets)
     auc_total_avg = roc_auc_score(ground_truths, predictions, average="macro")
-    print(f'\nTotal: \n\tAccuracy: {acc_total_avg:0.4f}\n\tIOU: {IoU_total_avg:0.4f}')
-    print(f'\tAUC: {auc_total_avg:0.4f}')
+    print(f'\nTotal: \n\tAccuracy: {acc_total_avg:0.3f}\n\tIoU: {IoU_total_avg:0.3f}')
+    print(f'\tAUC: {auc_total_avg:0.3f}')
 
     # results_log.to_csv(results_csv_file, index=False)
 
 
-def evaluate_video_level_timeseries(in_dir):
+def pred_helper(pred_list, th):
+    real, fake = 0, 1
+    counter_obj = Counter(pred_list)
+    if len(counter_obj) == 1:
+        return list(counter_obj.keys())[0]
+    if counter_obj[fake] / counter_obj[real] >= th:
+        return fake
+    return real
+
+
+def evaluate_video_level_timeseries(in_dir, min_fake_threshold=0.5):
     """
     real => 0
     fake => 1, 2, 3, 4, 5 (multi-class)
@@ -274,17 +290,23 @@ def evaluate_video_level_timeseries(in_dir):
     predictions, ground_truths = [], []
     wrong_predictions, results_log = [], []
     all_predictions, all_ground_truths = [], []
+    load_error_list = []
     for video_name_npy in tqdm(os.listdir(in_dir)):
-        data = np.load(os.path.join(in_dir, video_name_npy))
+        try:
+            data = np.load(os.path.join(in_dir, video_name_npy))
+        except ValueError:
+            load_error_list.append(video_name_npy)
+            continue
         x_test, y_test_list = data[:, :, 1:], data[:, 0, 0]
         y_test_list = y_test_list.tolist()
 
         y_pred_raw = model.predict(x_test)
-        # y_pred_list = y_pred_raw[:, 0].tolist()
         y_pred_list = list(np.argmax(y_pred_raw, axis=1))
 
-        y_pred = max(y_pred_list, key=y_pred_list.count)
+        # y_pred = max(y_pred_list, key=y_pred_list.count)
+        y_pred = pred_helper(y_pred_list, th=min_fake_threshold)
         y_test = max(y_test_list, key=y_test_list.count)
+        # th_used_count = th_used_count + 1 if th_used else th_used_count
 
         # y_pred = 1 if y_pred >= 1 else 0  # TODO temporary, remove
         # y_test = 1 if y_test >= 1 else 0  # TODO temporary, remove
@@ -316,18 +338,23 @@ def evaluate_video_level_timeseries(in_dir):
     # all_predictions = [1 if val >= 1 else 0 for val in all_predictions]  # TODO temporary, remove
     # all_ground_truths = [1 if val >= 1 else 0 for val in all_ground_truths]  # TODO temporary, remove
 
+    print(f'Number of errors in loading: {len(load_error_list)}.\n')
+
     acc = accuracy_score(ground_truths, predictions)
     auc = roc_auc_score(ground_truths, predictions, average="macro")
-    print(f'Video level Accuracy: {acc:0.4f}.')
-    print(f'Video level AUC (macro): {auc:0.4f}.\n')
+    print(f'Video level Accuracy: {acc:0.3f}.')
+    print(f'Video level AUC: {auc:0.3f}.\n')
 
     all_acc = accuracy_score(all_ground_truths, all_predictions)
     all_auc = roc_auc_score(all_ground_truths, all_predictions, average="macro")
 
-    print(f'Window/Time-step level Accuracy: {all_acc:0.4f}.')
-    print(f'Window/Time-step level AUC (macro): {all_auc:0.4f}.\n')
+    print(f'Window/Time-step level Accuracy: {all_acc:0.3f}.')
+    print(f'Window/Time-step level AUC: {all_auc:0.3f}.\n')
 
-    print(f'Number of wrong predictions: {len(wrong_predictions)}.')
+    print(os.path.basename(MODEL_PATH))
+    print(os.path.basename(in_dir))
+
+    # print(f'Number of wrong predictions: {len(wrong_predictions)}.')
 
     # with open(r'FFpp_test_video_level_wrong_predictions_binary_Run14.txt', 'w') as fp:
     #     for item in wrong_predictions:
@@ -335,7 +362,7 @@ def evaluate_video_level_timeseries(in_dir):
     #     print('Done: Wrong Predictions saved.')
 
 
-def evaluate_temporal_one_segment_timeseries(in_dir, smooth_n_frames=0):
+def evaluate_temporal_timeseries(in_dir, smooth_n_frames=0):
     """
     real => 0
     fake => 1 (binary)
@@ -360,8 +387,8 @@ def evaluate_temporal_one_segment_timeseries(in_dir, smooth_n_frames=0):
 
         predictions.extend(list(y_preds))
         ground_truths.extend(list(y_test))
-        predictions.extend([1, 1, 1, 1])  # TODO remove (only for 5-timestep models' missing frames)
-        ground_truths.extend([1, 1, 1, 1])  # TODO remove (only for 5-timestep models' missing frames)
+        predictions.extend([1, 1, 1, 1])  # TODO remove (only for 5/10-timestep models' missing frames)
+        ground_truths.extend([1, 1, 1, 1])  # TODO remove (only for 5/10-timestep models' missing frames)
 
         predictions_per_dataset[dataset].extend(list(y_preds))
         ground_truths_per_dataset[dataset].extend(list(y_test))
@@ -373,42 +400,56 @@ def evaluate_temporal_one_segment_timeseries(in_dir, smooth_n_frames=0):
         d_acc = accuracy_score(d_gt, d_pred)
         d_iou = calculate_IOU(d_gt, d_pred)
         print(f'Dataset: {d}')
-        print(f'\tAccuracy: {d_acc:0.4f}.')
-        print(f'\tIoU: {d_iou:0.4f}.')
-        print(f'\tAUC: {d_auc_macro:0.4f}.\n')
+        print(f'\tAccuracy: {d_acc:0.3f}.')
+        print(f'\tIoU: {d_iou:0.3f}.')
+        print(f'\tAUC: {d_auc_macro:0.3f}.\n')
 
     auc_macro = roc_auc_score(ground_truths, predictions, average="macro")
     acc = accuracy_score(ground_truths, predictions)
     iou = calculate_IOU(ground_truths, predictions)
     print('Average:')
-    print(f'\tAccuracy: {acc:0.4f}.')
-    print(f'\tIoU: {iou:0.4f}.')
-    print(f'\tAUC: {auc_macro:0.4f}.\n')
-
-
-def evaluate_temporal_two_segments_timeseries(in_dir):
-    pass
+    print(f'\tAccuracy: {acc:0.3f}')
+    print(f'\tIoU: {iou:0.3f}')
+    print(f'\tAUC: {auc_macro:0.3f}\n')
+    print(os.path.basename(MODEL_PATH), '\n', in_dir, '\n', 'smooth=', smooth_n_frames, '\n')
 
 
 if __name__ == '__main__':
-    DATA_ROOT_FFpp = r'/data/PROJECT FILES/DFD_Embeddings/FFpp_embeddings'
-    DATA_ROOT_CelebDF = r'/data/PROJECT FILES/DFD_Embeddings/CelebDF_embeddings'
-    MODEL_PATH = r'./saved_models/FFpp_TimeSeries_Run22_best.h5'
+    DATA_ROOT = r'/data/PROJECT FILES/DFD_Embeddings/FFpp_embeddings'
+    DATA_ROOT_X = r'/data/PROJECT FILES/DFD_Embeddings/FFpp_embeddings/cross'
+    MODEL_PATH = r'./saved_models/FFpp_TimeSeries_Run17_best_v1.h5'
     # MODEL_PATH = r'./saved_models/FFpp_Baseline_Run01_best.h5'
 
     # evaluate_old()
 
     # evaluate_test_data_ViT(r'./data/FFpp_test_predictions.csv')
 
-    # evaluate_temporal_one_segment_ViT(smooth_n_frames=5)
+    # evaluate_temporal_one_segment_ViT(
+    #     data_path=os.path.join(DATA_ROOT, 'FFpp_temporal_eval_data/one_segment'),
+    #     gt_file=os.path.join(DATA_ROOT, 'FFpp_temporal_eval_data/temporal_one_segment_ground_truth.csv'),
+    #     smooth_n_frames=0)
 
-    # evaluate_temporal_two_segments_ViT(smooth_n_frames=5)
+    # evaluate_temporal_two_segments_ViT(
+    #     data_path=os.path.join(DATA_ROOT, 'FFpp_temporal_eval_data/two_segments'),
+    #     gt_file=os.path.join(DATA_ROOT, 'FFpp_temporal_eval_data/temporal_two_segments_ground_truth.csv'),
+    #     smooth_n_frames=0)
 
-    evaluate_video_level_timeseries(in_dir=os.path.join(DATA_ROOT_FFpp,
-                                                        'FFpp_test_embeddings_npy_videos_10steps_binary_overlap'))
+    evaluate_video_level_timeseries(
+        in_dir=os.path.join(DATA_ROOT, 'FFpp_test_embeddings_npy_videos_5steps_binary_overlap'))
 
-    # evaluate_temporal_one_segment_timeseries(in_dir=os.path.join(DATA_ROOT_FFpp, 'FFpp_temporal_one_segment_npy_5steps_overlap'),
-    #                                          smooth_n_frames=25)
+    # evaluate_video_level_timeseries(
+    #     in_dir=os.path.join(DATA_ROOT_X, 'CelebDF', 'FFpp_x_CelebDF_npy_videos_5steps_overlap'))
 
-    # evaluate_temporal_two_segments_timeseries(in_dir=os.path.join(DATA_ROOT_FFpp, 'FFpp_temporal_one_segment_npy_5steps_overlap'),
-    #                                          smooth_n_frames=25)
+    # evaluate_video_level_timeseries(
+    #     in_dir=os.path.join(DATA_ROOT_X, 'DFDC', 'FFpp_x_DFDC_npy_videos_5steps_overlap'))
+
+    # evaluate_video_level_timeseries(
+    #     in_dir=os.path.join(DATA_ROOT_X, 'WildDF', 'FFpp_x_WildDF_npy_videos_5steps'))
+
+    # evaluate_temporal_timeseries(
+    #     in_dir=os.path.join(DATA_ROOT, 'FFpp_temporal_two_segments_npy_5steps_overlap'),
+    #     smooth_n_frames=35)
+
+    # evaluate_temporal_timeseries(
+    #     in_dir=os.path.join(DATA_ROOT, 'FFpp_temporal_two_segments_npy_5steps_overlap'),
+    #     smooth_n_frames=35)

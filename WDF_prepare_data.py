@@ -47,9 +47,9 @@ def make_npy_by_batch_WDF(vid_csv_dir, npy_out_dir, which_set='train', batch_siz
         # print(class_name, video_name_csv)
 
         df = pd.read_csv(filepath, header=None)
+
         df_splits = split_dataframe(df, chunk_size=timesteps)
         # print(f'Number of splits: {len(df_splits)}')
-
         for df_split in df_splits:
             df_split = df_split.drop(columns=[0])  # remove sequence number
             df_split.insert(0, 'class', int(class_num))  # set class number
@@ -68,6 +68,7 @@ def make_npy_by_batch_WDF(vid_csv_dir, npy_out_dir, which_set='train', batch_siz
                 np.save(f'{npy_out_dir}/WDF_embeddings_{which_set}_{(i + 1) // batch_size}.npy', data_np)
                 data_np = None
             i += 1
+            # print(df_np.shape, data_np.shape)
 
     if data_np is not None:
         np.save(f'{npy_out_dir}/WDF_embeddings_{which_set}_{(i + 1) // batch_size}.npy', data_np)
