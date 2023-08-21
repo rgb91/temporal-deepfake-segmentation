@@ -19,7 +19,7 @@ Repository to share the models and weights from the paper. [arXiv](https://arxiv
 <img src="./assets/table-results-video-level.png" width=370>
 
 ## Model Weights
-TBA
+Fine-tuned ViT model weights can be found [here](https://mediaflux.researchsoftware.unimelb.edu.au:443/mflux/share.mfjp?_token=kMEoAeb6PUsHySXx7Ogw11282382393&browser=true&filename=checkpoint_best.pth.tar). 
 
 ## Cite this paper
     @misc{saha2023undercover,
