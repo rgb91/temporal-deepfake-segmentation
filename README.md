@@ -20,6 +20,9 @@ Repository to share the models and weights from our paper: [arXiv](https://arxiv
 
 ## Model Weights
 Fine-tuned ViT model weights can be found [here](https://mediaflux.researchsoftware.unimelb.edu.au:443/mflux/share.mfjp?_token=kMEoAeb6PUsHySXx7Ogw11282382393&browser=true&filename=checkpoint_best.pth.tar). 
+ViT-embeddings for FF+ dataset can be downloaded [here](https://mediaflux.researchsoftware.unimelb.edu.au:443/mflux/share.mfjp?_token=TH4gLTKIH4bbwNECwkug11282382497&browser=true&filename=ff%2B_2_class_emb.zip).
+
+We also thank the authors of the [SSF](https://github.com/dongzelian/SSF) for providing their source code.
 
 ## Cite this paper
     @misc{saha2023undercover,
