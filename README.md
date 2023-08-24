@@ -7,7 +7,7 @@ Repository to share the models and weights from our paper: [arXiv](https://arxiv
 
 ## Model Architecture
 
-We leverage Parameter Efficient Fine-Tuning (PEFT) to build an efficient architecture that achieves results comparable to and outperforming SOTA methods.
+We leverage Parameter Efficient Fine-Tuning (PEFT) to build an efficient transformer-based architecture that achieves results comparable to and outperforming SOTA methods.
 <!-- ![Model Architecture and Pipeline](/assets/architecture.png) -->
 <img src="./assets/architecture.png" width=760>
 
