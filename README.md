@@ -25,12 +25,12 @@ We leverage Parameter Efficient Fine-Tuning (PEFT) to build an efficient transfo
 ## Results
 ### Temporal Segmentation
 <!-- ![Temporal Segmentation Results](/assets/table-results-temporal.png) -->
-<img src="./assets/table-results-temporal.png" width=760>
+<img src="./assets/table-results-temporal-manual.png" width=760>
 On the subset with subtle transitions between real and fake frames.
 
 
 <!-- ![Temporal Segmentation Results](/assets/table-results-temporal.png) -->
-<img src="./assets/table-results-temporal.png" width=760>
+<img src="./assets/table-results-temporal-random.png" width=760>
 On the subset with random (not subtle) transitions between real and fake frames.
 
 
