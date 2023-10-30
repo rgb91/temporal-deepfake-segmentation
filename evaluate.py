@@ -1,34 +1,32 @@
-import os
-import numpy as np
-import pandas as pd
-from tqdm import tqdm
-import tensorflow as tf
-from os.path import join
-from tensorflow import keras
-from collections import Counter
-from utils import load_data_single_npy, multiclass_roc_auc_score, remove_extension, calculate_IOU, get_position_encoding
-from sklearn.metrics import roc_auc_score, accuracy_score, roc_curve
-from warnings import simplefilter
-from tensorflow.keras.models import load_model
 import argparse
+import os
+from os.path import join
+from warnings import simplefilter
+
+import numpy as np
+from sklearn.metrics import roc_auc_score, accuracy_score
+from tensorflow.keras.models import load_model
+from tqdm import tqdm
 
 parser = argparse.ArgumentParser(description='FFpp Timeseries Training')
 parser.add_argument('--model', help='Path to model', required=True)
 parser.add_argument('--data', help='Path to data directory', required=True)
 parser.add_argument('--variation', help='Options: subtle, random, video', required=True)
-# parser.add_argument('--steps', help='Window size', required=True)
-# parser.add_argument('--overlap', help='Overlap size of windows', required=True)
-# parser.add_argument('--smooth', help='Smoothing window', default=15)
 
 simplefilter(action='ignore', category=FutureWarning)
 simplefilter(action='ignore', category=UserWarning)
+
+
+def calculate_IOU(gt_labels, preds):
+    intersection = sum(1 for gt, pred in zip(gt_labels, preds) if gt == pred)
+    union = intersection + (len(gt_labels) - intersection) * 2
+    return intersection / union
 
 
 def smooth_predictions(preds, offset=3):
     updated_preds = []
     for i, pred in enumerate(preds):
         ll = max(0, i - offset)  # left offset
-        # preds_l = preds[ll:i]
         preds_l = updated_preds[ll:i]
         preds_r = preds[i + 1:i + offset + 1]
 
@@ -51,7 +49,6 @@ def smooth_predictions(preds, offset=3):
 def evaluate_video_level(in_dir, model_path, smooth_n_frames=25, dataset_level=True):
     """
     real => 0
-    fake => 1, 2, 3, 4, 5 (multi-class)
     fake => 1 (binary)
     """
     model = load_model(model_path)
@@ -100,8 +97,6 @@ def evaluate_video_level(in_dir, model_path, smooth_n_frames=25, dataset_level=T
             d_auc_macro = roc_auc_score(d_gt, d_pred, average="macro")
             d_acc = accuracy_score(d_gt, d_pred)
             print(f'{d}, {d_acc:0.3f}, {d_auc_macro:0.3f}')
-
-    # print(f'Number of errors in loading: {len(load_error_list)}.\n')
 
     acc = accuracy_score(ground_truths, predictions)
     auc = roc_auc_score(ground_truths, predictions, average="macro")
