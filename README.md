@@ -7,7 +7,7 @@ Accepted at [DFAD Workshop](https://ailb-web.ing.unimore.it/dfad2023/) in ICCV 2
 
 ## Evaluate on Temporal Deepfakes
 1. Download the trained timeseries transformer model from [here](https://drive.google.com/drive/folders/1SNY-gIHY9QJigcYDR2115n7snv17W6nU?usp=sharing).
-2. Also download the preprocessed data from [here](https://drive.google.com/drive/folders/1o1Z6l2Icrn2KV8SfieSHYBnSlnoewHpz?usp=sharing). Please note, this data are the _preprocessed_ **ViT-embeddings**, not raw images.
+2. Also download the preprocessed data from [here](https://drive.google.com/drive/folders/1o1Z6l2Icrn2KV8SfieSHYBnSlnoewHpz?usp=sharing). Please note, this data corresponds to the _preprocessed_ **ViT-embeddings**, not raw images.
 3. Run the script `evaluate.py` like below:
 ```shell
 python evaluate.py --model </path/to>/model/temporal_dfd.h5 --data </path/to>/embeddings/subtle/ --variation subtle
